@@ -83,7 +83,7 @@ const disable = (...els) =>
 
 const play = () => {
   if (playable) {
-    let audio = new Audio("/src/assets/sound.mp3");
+    let audio = new Audio("./assets/sound.mp3");
     audio.play().then(() => {
       audio = null;
     });
