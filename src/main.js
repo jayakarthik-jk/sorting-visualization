@@ -42,10 +42,12 @@ const incTimeTaken = () => {
     })
     .join(":");
 };
+
 const incCompareCount = () => {
   totalComparison++;
   totalComparsionDiv.innerText = totalComparison;
 };
+
 const resetStat = () => {
   totalComparison = 0;
   time_taken = {
@@ -62,27 +64,37 @@ const resetStat = () => {
     )
     .join(":");
 };
+
 const range = (value) => containerHeight * ((value - 0) / (total - 0));
+
 const getPosition = (index) => (width + gap) * index + padding / 2 + "px";
+
 const arrange = () =>
   array.forEach((div, i) => (div.style.left = getPosition(i)));
+
 const setActive = (index) => (array[index].style.backgroundColor = active_bg);
+
 const setInActive = (index) => (array[index].style.backgroundColor = "white");
+
 const enable = (...els) => els.forEach((el) => el.removeAttribute("disabled"));
+
 const disable = (...els) =>
   els.forEach((el) => el.setAttribute("disabled", true));
+
 const play = () => {
   if (playable) {
-    const audio = new Audio("/src/assets/sound.mp3");
-    audio.play();
-
+    let audio = new Audio("/src/assets/sound.mp3");
+    audio.play().then(() => {
+      audio = null;
+    });
   }
-}
+};
 
 // resize alert
 window.addEventListener("resize", () => {
   alert("Don't resize the window, bins are sized according to the window size");
 });
+
 // mobile view alert
 window.addEventListener("load", () => {
   if (window.innerWidth < 800) {
@@ -99,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   totalComparsionDiv = document.getElementById("total_comparison");
   timeTakenDiv = document.getElementById("time_taken");
   speedBtn.addEventListener("click", () => {
-    play()
+    play();
     switch (speedBtn.getAttribute("data-speed")) {
       case "slow":
         speedBtn.setAttribute("data-speed", "medium");
@@ -125,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sizeBtn = document.getElementById("size-btn");
   const sizeBtnIcon = document.getElementById("size-btn-icon");
   sizeBtn.addEventListener("click", () => {
-    play()
+    play();
     switch (sizeBtn.getAttribute("data-size")) {
       case "small":
         sizeBtn.setAttribute("data-size", "medium");
@@ -147,19 +159,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const algorithmList = document.getElementById("algorithm-list");
   const tooltipText = document.getElementById("tooltiptext");
-  algorithmList.addEventListener("click", play)
+  algorithmList.addEventListener("click", play);
   algorithmList.addEventListener("change", () => {
     algorithm = algorithmList.options[algorithmList.selectedIndex].value;
     tooltipText.innerHTML = desc[algorithm];
   });
   const shuffleBtn = document.getElementById("shuffle-btn");
   shuffleBtn.addEventListener("click", () => {
-    play()
-    init()
+    play();
+    init();
   });
   const playBtn = document.getElementById("play-btn");
   playBtn.addEventListener("click", async () => {
-    play()
+    play();
     disable(playBtn, shuffleBtn, sizeBtn, algorithmList);
     await run();
     enable(playBtn, shuffleBtn, sizeBtn, algorithmList);
@@ -167,14 +179,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const volumeBtn = document.getElementById("volume-btn");
   const volumeBtnIcon = document.getElementById("volume-btn-icon");
   volumeBtn.addEventListener("click", () => {
-    play()
+    play();
     playable = !playable;
-    volumeBtnIcon.className = playable ? "fa-solid fa-volume-high" : "fa-solid fa-volume-xmark";
+    volumeBtnIcon.className = playable
+      ? "fa-solid fa-volume-high"
+      : "fa-solid fa-volume-xmark";
   });
   init();
 });
-
-
 
 function init() {
   create();
@@ -277,7 +289,7 @@ function shuffle() {
 }
 
 async function swap(i, j) {
-  play()
+  play();
   incCompareCount();
   setActive(i);
   setActive(j);
@@ -310,7 +322,7 @@ async function swap(i, j) {
 }
 
 async function update(index, div) {
-  play()
+  play();
   incCompareCount();
   return new Promise(async (resolve) => {
     const duration = {
@@ -332,7 +344,6 @@ async function update(index, div) {
     resolve();
   });
 }
-
 
 // Sorting Algorithms
 async function insersionSort() {
@@ -650,6 +661,7 @@ async function bitonicSort() {
   arrange();
   display();
   await sort(0, array.length, 1);
+  padding -= (total - required) * (width + gap);
   async function bitonicMerge(low, n, direction) {
     if (n > 1) {
       const m = greatestPowerOfTwoLessThan(n);
