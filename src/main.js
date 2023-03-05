@@ -83,23 +83,18 @@ const disable = (...els) =>
 
 const play = () => {
   if (playable) {
-    let audio = new Audio("./assets/sound.mp3");
+    let audio = new Audio("./src/assets/sound.mp3");
     audio.play().then(() => {
       audio = null;
     });
   }
 };
 
-// resize alert
-window.addEventListener("resize", () => {
-  alert("Don't resize the window, bins are sized according to the window size");
-});
-
 // mobile view alert
 window.addEventListener("load", () => {
   if (window.innerWidth < 800) {
     alert(
-      "This site is not optimized for mobile devices yet, turn on desktop mode"
+      "This site is not optimized for mobile view yet, turn on desktop mode"
     );
   }
 });
