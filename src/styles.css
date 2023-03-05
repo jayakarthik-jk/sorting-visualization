@@ -1,0 +1,195 @@
+:root {
+  --primary: #5adbb5;
+  --primary-hover: #78f1cd;
+  --backgound: #1c1c1c;
+}
+
+* {
+  font-family: "Tilt Warp", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.stats {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  z-index: 1;
+  text-align: center;
+  font-weight: bolder;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 5px;
+}
+
+.stats .stats-title {
+  color: var(--primary);
+  text-align: center;
+}
+
+.stats .stats-value {
+  color: white;
+  text-align: center;
+}
+
+.title {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  right: 0;
+  z-index: 1;
+  color: var(--primary);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+.nav {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 1;
+  font-weight: bolder;
+  font-size: xx-large;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  height: 100svh;
+  background-color: var(--backgound);
+  color: white;
+  position: relative;
+  transition: all;
+}
+
+*:focus {
+  outline: none;
+}
+
+.bin {
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.controls {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100px;
+  padding: 0 75px 0 75px;
+}
+
+.btn {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary);
+  border-bottom: 2px solid gray;
+  transform: scale(115%);
+  height: fit-content;
+}
+
+.btn:active {
+  transform: scale(100%);
+}
+
+.btn:disabled {
+  opacity: 0.8;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-hover);
+}
+
+.algorithm-dropdowm {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  border-bottom: 2px solid gray;
+  transform: scale(115%);
+  height: fit-content;
+}
+
+.algorithm-dropdowm:hover {
+  cursor: pointer;
+  background: var(--primary-hover);
+}
+
+.algorithm-dropdowm option {
+  background-color: var(--backgound);
+  color: white;
+  font-size: medium;
+}
+
+.algorithm-dropdowm:disabled {
+  opacity: 0.8;
+}
+
+.info-section {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  font-weight: bolder;
+  font-size: x-large;
+  color: white;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 240px;
+  background-color: white;
+  color: var(--backgound);
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -120px;
+  z-index: 1;
+  font-size: small;
+  box-shadow: 2px 2px 10px 1px var(--backgound);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

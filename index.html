@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Visualization</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/dc25f1cdbd.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="stats">
+        <span class="stats-title">compare</span>
+        <span class="stats-title">:</span>
+        <span class="stats-value" id="total_comparison">0</span>
+        <span class="stats-title">duration</span>
+        <span class="stats-title">:</span>
+        <span class="stats-value" id="time_taken">00:00:00</span>
+      </div>
+      <div class="title">Sorting Visualization</div>
+      <div class="nav">
+        <a href="https://github.com/jayakarthik-jk/sorting-visualization">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </div>
+    <div id="container" class="container"></div>
+    <div class="controls">
+      <div class="info-section">
+        <div class="info-container tooltip">
+          <i class="fa-solid fa-circle-info info"></i>
+          <span class="tooltiptext" id="tooltiptext"
+            >Selection sort is a simple sorting algorithm that selects the
+            smallest (or largest) element from an unsorted list in each
+            iteration and places it at the beginning of the sorted list.</span
+          >
+        </div>
+        <select
+          name="algorithm-list"
+          id="algorithm-list"
+          class="algorithm-dropdowm"
+        >
+          <option value="bitonic">bitonic Sort</option>
+          <option value="bogo">bogo Sort</option>
+          <option value="bubble">bubble Sort</option>
+          <option value="cocktail">cocktail Sort</option>
+          <option value="comb">comb Sort</option>
+          <option value="cycle">cycle Sort</option>
+          <option value="gnome">gnome Sort</option>
+          <option value="heap">heap Sort</option>
+          <option value="insersion">insersion Sort</option>
+          <option value="merge">merge Sort</option>
+          <option value="odd-even">oddEven Sort</option>
+          <option value="pancake">pancake Sort</option>
+          <option value="quick">quick Sort</option>
+          <option value="selection" selected>selection Sort</option>
+          <option value="shell">shell Sort</option>
+          <option value="stooge">stooge Sort</option>
+        </select>
+      </div>
+      <button class="btn shuffle-btn" id="shuffle-btn">
+        shuffle<i class="fa-solid fa-shuffle"></i>
+      </button>
+      <button class="btn speed-btn" id="speed-btn" data-speed="medium">
+        speed<i id="speed-btn-icon" class="fa-solid fa-car"></i>
+      </button>
+      <button class="btn size-btn" id="size-btn" data-size="medium">
+        size<i id="size-btn-icon" class="fa-solid fa-2"></i>
+      </button>
+      <button class="btn sort-btn" id="play-btn">
+        play<i class="fa-solid fa-play"></i>
+      </button>
+
+      <button class="btn sort-btn" id="volume-btn">
+        Sound<i class="fa-solid fa-volume-xmark" id="volume-btn-icon"></i>
+      </button>
+    </div>
+  </body>
+</html>
