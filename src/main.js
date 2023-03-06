@@ -242,6 +242,9 @@ async function run() {
     case "bogo":
       sort = bogoSort;
       break;
+    case "sleep":
+      sort = sleepSort;
+      break;
     default:
       sort = selectionSort;
       break;
@@ -316,12 +319,12 @@ async function swap(i, j) {
   });
 }
 
-async function update(index, div) {
+async function update(index, div, customDelay = delay) {
   play();
   incCompareCount();
   return new Promise(async (resolve) => {
     const duration = {
-      duration: delay,
+      duration: customDelay,
       iterations: 1,
       fill: "both",
     };
@@ -712,6 +715,28 @@ async function bogoSort() {
   }
 }
 
+async function sleepSort() {
+  let oldPlayable = playable;
+  playable = false;
+  let max = array[0];
+  let index = 0
+  for (let i = 1; i < array.length; i++) {
+    if (array[i].value > max.value) {
+      max = array[i];
+    }
+  }
+  function sleepNumber(element) {
+    setTimeout(async () => {
+      await update(index, element, 0);
+      index++;
+      if (index === array.length) playable = oldPlayable;
+    }, (element.value * 1000) / max.value);
+  }
+  for (let i = 0; i < array.length; i++) {
+    sleepNumber(array[i]);
+  }
+}
+
 // all the descriptions of the algorithms
 const desc = {
   selection:
@@ -743,4 +768,5 @@ const desc = {
   bitonic:
     "Bitonic sort is a sorting algorithm that sorts the list by dividing it into two bitonic sequences, recursively sorting them, and then merging them into a single sorted list.",
   bogo: "Bogo sort, also known as stupid sort, is a sorting algorithm that randomly shuffles the list and checks if it is sorted, repeating this process until the list is sorted.",
+  "sleep": "Sleep sort is a sorting algorithm that sorts the list by sleeping for a time proportional to the value of each element, and then waking up and printing the element."
 };
